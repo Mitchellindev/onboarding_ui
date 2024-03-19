@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding_ui/screens/forgot_password.dart';
+import 'package:onboarding_ui/config/router/route.dart';
+import 'package:onboarding_ui/widgets/my_button.dart';
+import 'package:onboarding_ui/widgets/my_icon_button.dart';
 import 'package:onboarding_ui/widgets/my_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -59,11 +61,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ForgotPassword()),
-                        );
+                        Navigator.pushNamed(context, Routes.forgotPassword);
                       },
                       child: const Text('forgot password'),
                     ),
@@ -72,21 +70,9 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: 8.0,
                 ),
-                Center(
-                  child: ElevatedButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.black,
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
+                MyButton(
+                  label: 'Login',
+                  onPressed: () {},
                 ),
                 const SizedBox(
                   height: 8.0,
@@ -107,34 +93,14 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 10.0),
                 const Center(child: Text('or')),
                 const SizedBox(height: 10.0),
-                Center(
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Image.asset('asset/images/Google.png'),
-                    label: const Text("Continue with Google"),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.white,
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
+                const MyIconButton(
+                  icon: "asset/images/Google.png",
+                  label: "Continue with Google",
                 ),
                 const SizedBox(height: 8.0),
-                Center(
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Image.asset('asset/images/Apple.png'),
-                    label: const Text("Continue with Apple"),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.white,
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
+                const MyIconButton(
+                  icon: "asset/images/Apple.png",
+                  label: "Continue with Apple",
                 ),
                 const SizedBox(height: 10.0),
                 const Center(child: Text('or')),

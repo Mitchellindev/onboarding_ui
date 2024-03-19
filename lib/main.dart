@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:onboarding_ui/config/router/app_router.dart';
+import 'package:onboarding_ui/config/router/app_router.dart';
 import 'package:onboarding_ui/screens/login_screen.dart';
 
 void main() {
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final appRouter = AppRouter();
+    final appRouter = AppRouter();
     return MaterialApp(
-      // onGenerateRoute: appRouter.onGeneratedRoute,
+      onGenerateRoute: appRouter.onGeneratedRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
