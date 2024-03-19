@@ -1,14 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding_ui/config/router/route.dart';
 import 'package:onboarding_ui/widgets/my_button.dart';
 import 'package:onboarding_ui/widgets/my_icon_button.dart';
 import 'package:onboarding_ui/widgets/my_text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
-  final phoneNumberController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  late TextEditingController phoneNumberController;
+
+  late TextEditingController passwordController;
+  late TextEditingController emailController;
+  late TextEditingController confirmPasswordController;
+
+  @override
+  void initState() {
+    phoneNumberController = TextEditingController();
+    passwordController = TextEditingController();
+    emailController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    phoneNumberController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +43,9 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: const Text(
-          'Login',
+          'Register',
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
@@ -27,7 +54,7 @@ class LoginScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 38.0, vertical: 50.0),
+          padding: const EdgeInsets.symmetric(horizontal: 38.0, vertical: 10.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,6 +74,16 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15.0),
                 const Text(
+                  'Enter your email',
+                  style: TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 8.0),
+                MyTextField(
+                  controller: emailController,
+                  obscureText: false,
+                ),
+                const SizedBox(height: 15.0),
+                const Text(
                   'Enter your password',
                   style: TextStyle(fontSize: 16),
                 ),
@@ -56,22 +93,19 @@ class LoginScreen extends StatelessWidget {
                   obscureText: true,
                 ),
                 const SizedBox(height: 8.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, Routes.forgotPassword);
-                      },
-                      child: const Text('forgot password?'),
-                    ),
-                  ],
+                const SizedBox(height: 15.0),
+                const Text(
+                  'Re-enter your password',
+                  style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(
-                  height: 8.0,
+                const SizedBox(height: 8.0),
+                MyTextField(
+                  controller: confirmPasswordController,
+                  obscureText: true,
                 ),
+                const SizedBox(height: 15.0),
                 MyButton(
-                  label: 'Login',
+                  label: 'Sign Up',
                   onPressed: () {},
                 ),
                 const SizedBox(
@@ -81,15 +115,15 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Don’t have an account? ',
+                      'Already have an account? ',
                       style: TextStyle(color: Color.fromRGBO(104, 104, 104, 1)),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Routes.signUp);
+                        Navigator.of(context).pop();
                       },
                       child: const Text(
-                        'Sign Up',
+                        'Login',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -108,17 +142,6 @@ class LoginScreen extends StatelessWidget {
                   label: "Continue with Apple",
                 ),
                 const SizedBox(height: 10.0),
-                const Center(child: Text('or')),
-                const SizedBox(height: 10.0),
-                const Center(
-                  child: Text(
-                    'Continue as Guest',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Color.fromRGBO(104, 104, 104, 1),
-                    ),
-                  ),
-                )
               ],
             ),
           ),

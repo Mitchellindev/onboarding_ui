@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding_ui/config/router/route.dart';
 import 'package:onboarding_ui/widgets/my_button.dart';
-import 'package:onboarding_ui/widgets/my_text_field.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/style.dart';
 
-class ForgotPassword extends StatelessWidget {
-  ForgotPassword({super.key});
+class GetOTP extends StatelessWidget {
+  GetOTP({super.key});
   final phoneNumberController = TextEditingController();
 
   @override
@@ -22,7 +22,7 @@ class ForgotPassword extends StatelessWidget {
         ),
         centerTitle: true,
         title: const Text(
-          'Forgot',
+          'Verify',
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
@@ -39,42 +39,52 @@ class ForgotPassword extends StatelessWidget {
                 const SizedBox(height: 50.0),
                 const Center(
                   child: Image(
-                    image: AssetImage('asset/images/forgot_password.png'),
+                    image: AssetImage('asset/images/otp.png'),
                   ),
                 ),
                 const SizedBox(height: 30.0),
                 const Text(
-                  'Forgot password?',
+                  'Enter OTP',
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8.0),
                 const Text(
-                  'Don’t worry! it happens. Please enter phone number associated with your account',
+                  'An 4 digit OTP has been sent to',
                   style: TextStyle(
                     color: Color.fromRGBO(104, 104, 104, 1),
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 30.0),
-                const Row(
-                  children: [
-                    Text(
-                      'Enter your mobile number',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 8.0),
-                MyTextField(
-                  controller: phoneNumberController,
-                  obscureText: false,
+                const Text(
+                  '458-465-6466',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 30.0),
+                OTPTextField(
+                  length: 4,
+                  fieldWidth: 80,
+                  width: MediaQuery.of(context).size.width,
+                  textFieldAlignment: MainAxisAlignment.spaceBetween,
+                  fieldStyle: FieldStyle.box,
+                  style: const TextStyle(fontSize: 20),
+                  onChanged: (value) {
+                    print(value);
+                  },
                 ),
                 const SizedBox(height: 15.0),
-                MyButton(
-                    label: 'Get OTP',
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.getOTP);
-                    })
+                MyButton(label: 'Verify', onPressed: () {}),
+                const SizedBox(height: 18.0),
+                const Text(
+                  'Resend OTP',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Color.fromRGBO(104, 104, 104, 1),
+                  ),
+                ),
               ],
             ),
           ),
